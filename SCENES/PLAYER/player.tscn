@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcybp7ipm2mhp"]
+
+[ext_resource type="PackedScene" uid="uid://cableg7gquynr" path="res://SCENES/PLAYER/BODY/player_body_helicopter.tscn" id="1_66ohg"]
+[ext_resource type="Script" uid="uid://dvibs3cy6saem" path="res://SCENES/PLAYER/player.gd" id="1_ool75"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ool75"]
+size = Vector3(1.38795, 2.55014, 6.50817)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ool75"]
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_ool75")
+
+[node name="PlayerBodyHelicopter" parent="." instance=ExtResource("1_66ohg")]
+prop_rotation_perframe = 30.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0152978, -0.431812, 0.0655637)
+shape = SubResource("BoxShape3D_ool75")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+shape = SubResource("SphereShape3D_ool75")
+spring_length = 10.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+
+[node name="RopePoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://wls42r1e2qdw"]
+
+[ext_resource type="Script" uid="uid://boxshxhy5i3jt" path="res://SCENES/MAP/terrain.gd" id="1_2uorm"]
+[ext_resource type="Texture2D" uid="uid://dn1hc135apqk4" path="res://ASSETS/grass_texture.jpg" id="1_dj76f"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3eoov"]
+sky_top_color = Color(0.245156, 0.450959, 0.725568, 1)
+ground_bottom_color = Color(0.228856, 0.43987, 0.304049, 1)
+
+[sub_resource type="Sky" id="Sky_dj76f"]
+sky_material = SubResource("ProceduralSkyMaterial_3eoov")
+
+[sub_resource type="Environment" id="Environment_3eoov"]
+background_mode = 2
+sky = SubResource("Sky_dj76f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2uorm"]
+albedo_texture = ExtResource("1_dj76f")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3eoov"]
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dj76f"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[node name="Terrain" type="Node3D"]
+script = ExtResource("1_2uorm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3eoov")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 43.0326, 0)
+directional_shadow_max_distance = 84.0
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_2uorm")
+mesh = SubResource("PlaneMesh_3eoov")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_dj76f")
+
+[node name="BuildingsNode" type="Node3D" parent="."]
+
+[node name="Objects" type="Node3D" parent="."]

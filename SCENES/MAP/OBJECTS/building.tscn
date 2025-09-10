@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://x4shyhl18n0v"]
+
+[ext_resource type="Script" uid="uid://7io0klprxx1k" path="res://SCENES/MAP/OBJECTS/building.gd" id="1_vrafj"]
+[ext_resource type="Texture2D" uid="uid://dk3513l10qhij" path="res://ASSETS/helipad_texture.png" id="2_mh6p8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_enr5j"]
+albedo_texture = ExtResource("2_mh6p8")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vrafj"]
+
+[node name="Building" type="StaticBody3D"]
+script = ExtResource("1_vrafj")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+material_override = SubResource("StandardMaterial3D_enr5j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vrafj")

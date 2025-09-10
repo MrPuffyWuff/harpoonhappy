@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://duf3dixjq13u8"]
+
+[ext_resource type="Script" uid="uid://ccswenfc6ff5h" path="res://SCENES/PLAYER/WEAPON/rope.gd" id="1_wc2n2"]
+
+[sub_resource type="Curve3D" id="Curve3D_ugjir"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="Rope" type="Node3D"]
+script = ExtResource("1_wc2n2")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_ugjir")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.447214, -0.365148, -0.816496, 1.49012e-08, 0.912871, -0.408248, 0.894427, -0.182574, -0.408248, 0, 0, 0)

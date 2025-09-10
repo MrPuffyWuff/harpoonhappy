@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://deihivebjwaco"]
+
+[ext_resource type="Script" uid="uid://bkvr61myiyx7a" path="res://SCENES/UI/GUI/gui.gd" id="1_tw12t"]
+
+[node name="Gui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tw12t")
+
+[node name="DebugPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 23.0
+offset_top = 21.0
+offset_right = 481.0
+offset_bottom = 408.0
+
+[node name="DebugInfo" type="Label" parent="DebugPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

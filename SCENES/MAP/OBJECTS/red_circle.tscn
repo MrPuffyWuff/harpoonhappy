@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b16waxy6jy773"]
+
+[ext_resource type="Script" uid="uid://b3nsckuob5qlj" path="res://SCENES/MAP/OBJECTS/red_circle.gd" id="1_f2py2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mapi0"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_f2py2"]
+
+[node name="RedCircle" type="CharacterBody3D"]
+script = ExtResource("1_f2py2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_mapi0")
+mesh = SubResource("SphereMesh_f2py2")

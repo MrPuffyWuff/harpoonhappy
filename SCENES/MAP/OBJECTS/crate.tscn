@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2yg72s2v7bq2"]
+
+[ext_resource type="Script" uid="uid://cgt17i7hnq1u8" path="res://SCENES/MAP/OBJECTS/crate.gd" id="1_30sxl"]
+[ext_resource type="Texture2D" uid="uid://blpub5gee7lus" path="res://ASSETS/wooden_crate_1.png" id="1_tcncc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_30sxl"]
+albedo_texture = ExtResource("1_tcncc")
+uv1_scale = Vector3(3, 2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3kb6k"]
+material = SubResource("StandardMaterial3D_30sxl")
+size = Vector3(2, 2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3kb6k"]
+size = Vector3(2, 2, 2)
+
+[node name="Crate" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_30sxl")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_3kb6k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_3kb6k")

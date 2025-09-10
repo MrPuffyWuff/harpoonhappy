@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Lab1FlyingMachine"
+config/name="Harpoon Happy"
 run/main_scene="uid://cua5qq6x122ey"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"

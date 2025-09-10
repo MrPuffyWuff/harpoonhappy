@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt7km2gq52cbr"]
+
+[ext_resource type="BoxMesh" uid="uid://sysg6gllclhb" path="res://SCENES/PLAYER/BODY/blade_mesh.tres" id="1_2ve1x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ve1x"]
+albedo_color = Color(0.17, 0.17, 0.17, 1)
+
+[node name="Propeller" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 0, 0, 1.5)
+material_override = SubResource("StandardMaterial3D_2ve1x")
+mesh = ExtResource("1_2ve1x")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0, 0, -1.5)
+material_override = SubResource("StandardMaterial3D_2ve1x")
+mesh = ExtResource("1_2ve1x")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.2222e-08, -1.13133e-08, 1, -0.258819, 0.965926, 0, -0.965926, -0.258819, -4.37114e-08, 1.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_2ve1x")
+mesh = ExtResource("1_2ve1x")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.2222e-08, 1.13133e-08, 1, 0.258819, 0.965926, 0, -0.965926, 0.258819, -4.37114e-08, -1.5, 0, 0)
+material_override = SubResource("StandardMaterial3D_2ve1x")
+mesh = ExtResource("1_2ve1x")

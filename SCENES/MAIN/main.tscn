@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cua5qq6x122ey"]
+
+[ext_resource type="PackedScene" uid="uid://deihivebjwaco" path="res://SCENES/UI/GUI/gui.tscn" id="1_1xfn7"]
+[ext_resource type="PackedScene" uid="uid://dh5ld2p0kbonq" path="res://SCENES/GAME/game.tscn" id="1_n2i1s"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Gui" parent="." instance=ExtResource("1_1xfn7")]
+
+[node name="Game" parent="." instance=ExtResource("1_n2i1s")]
