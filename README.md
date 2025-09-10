@@ -1,3 +1,3 @@
 ## HarpoonHappy
 
-#Small game I'm working on
+Small game I'm working on
