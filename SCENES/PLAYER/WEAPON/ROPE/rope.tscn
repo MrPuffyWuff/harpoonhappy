@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://duf3dixjq13u8"]
 
-[ext_resource type="Script" uid="uid://ccswenfc6ff5h" path="res://SCENES/PLAYER/WEAPON/rope.gd" id="1_wc2n2"]
+[ext_resource type="Script" uid="uid://ccswenfc6ff5h" path="res://SCENES/PLAYER/WEAPON/ROPE/rope.gd" id="1_wc2n2"]
 
 [sub_resource type="Curve3D" id="Curve3D_ugjir"]
 _data = {

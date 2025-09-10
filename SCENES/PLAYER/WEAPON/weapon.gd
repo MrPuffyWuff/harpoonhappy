@@ -5,7 +5,7 @@ extends RigidBody3D
 @onready var Terrain = get_node("/root/Main/Game/Terrain")
 
 var player : Player
-const ROPE = preload("res://SCENES/PLAYER/WEAPON/rope.tscn")
+const ROPE = preload("res://SCENES/PLAYER/WEAPON/ROPE/rope.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,7 +15,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#print(linear_velocity)
 	pass
-
 
 func _on_body_entered(body: Node) -> void:
 	if body.get_parent().name == "Objects":
@@ -29,5 +28,7 @@ func _on_body_entered(body: Node) -> void:
 func make_rope():
 	var rope : Rope = ROPE.instantiate()
 	rope.start = player.rope_point.position
-	rope.end = self.global_position - player.global_position
+	var to_obj_vector : Vector3 = self.global_position - player.global_position
+	#Why inverse???? idk, magic?
+	rope.end = player.basis.inverse() * to_obj_vector
 	player.rope_point.add_child(rope)

@@ -46,3 +46,5 @@ shape = SubResource("ConcavePolygonShape3D_dj76f")
 [node name="BuildingsNode" type="Node3D" parent="."]
 
 [node name="Objects" type="Node3D" parent="."]
+
+[node name="RopeObjects" type="Node3D" parent="."]
