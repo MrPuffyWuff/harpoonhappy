@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var prop_rotation_perframe : float = 0.3
-var current_prop_rotate : float = 0
+var current_prop_rotate : float = 1
 var timer : float = 0
 @onready var parent = get_parent()
 @export var MIN_ROTATION : Vector3 = Vector3(-0.5,0.0,-0.5)
