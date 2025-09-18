@@ -95,4 +95,4 @@ ui_settings_toggle={
 
 [physics]
 
-3d/physics_engine="GodotPhysics3D"
+3d/physics_engine="Jolt Physics"
