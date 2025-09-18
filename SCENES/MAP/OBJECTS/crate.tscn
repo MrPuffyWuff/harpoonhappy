@@ -17,6 +17,7 @@ size = Vector3(2, 2, 2)
 [node name="Crate" type="RigidBody3D"]
 collision_layer = 4
 collision_mask = 11
+mass = 50.0
 script = ExtResource("1_30sxl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
