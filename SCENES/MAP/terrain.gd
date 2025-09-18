@@ -13,11 +13,11 @@ func _ready() -> void:
 			#0,
 			#rng.randf_range(-50,50)
 			#))
-	for i in range(5):
+	for i in range(100):
 		spawn_crate(Vector3(
-			rng.randf_range(-50,50),
-			2,
-			rng.randf_range(-50,50)
+			rng.randf_range(-100,100),
+			60,
+			rng.randf_range(-100,100)
 			))
 
 
