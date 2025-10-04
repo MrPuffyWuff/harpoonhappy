@@ -2,7 +2,10 @@
 @tool
 extends MeshInstance3D
 
-const size : float = 256
+const BUILDING = preload("res://SCENES/MAP/OBJECTS/building.tscn")
+const CRATE = preload("res://SCENES/MAP/OBJECTS/crate.tscn")
+
+const size : float = 1024
 @export_range(4, 256, 4) var resolution : int = 32:
 	#SUPER COOL. Basically, you know the suuuuper repetitive
 	#Accessor and modifier methods you did in Java? This is
@@ -25,8 +28,11 @@ const size : float = 256
 		height = input
 		update_mesh()
 
+
 func get_height(x : float, y : float) -> float:
-	return noise.get_noise_2d(x, y) * height
+	var n = noise.get_noise_2d(x, y)
+	#n = remap(n, -1, 1, 0, 1)
+	return n * height
 
 func get_normal(x : float, y : float) -> Vector3:
 	#Dist between verticies
@@ -41,7 +47,11 @@ func get_normal(x : float, y : float) -> Vector3:
 		(get_height(x, y + epsilon) - get_height(x, y - epsilon)) / (2.0 * epsilon),
 	)
 	return normal.normalized()
+
 func update_mesh() -> void:
+	#Clear previously placed buildings
+	#for child in buildings_node.get_children():
+		#child.free()
 	#Making the mesh
 	var plane := PlaneMesh.new()
 	#The Number of Grid units
@@ -62,6 +72,9 @@ func update_mesh() -> void:
 		var tangent = Vector3.RIGHT
 		if noise:
 			vertex.y = get_height(vertex.x, vertex.z)
+			#if vertex.y > height * 0.5:
+				#spawn_building(vertex)
+				#print(1)
 			normal = get_normal(vertex.x, vertex.z)
 			#The normal is perpendicular, so the cross is parallel!!! SO COOL
 			tangent = normal.cross(Vector3.UP)
@@ -82,3 +95,12 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func spawn_building(location : Vector3, size : Vector3 = Vector3.ZERO):
+	var instance : Building = BUILDING.instantiate()
+	instance.position.x = location.x
+	instance.position.z = location.z
+	if size != Vector3.ZERO:
+		instance.body_size = size
+	add_child(instance)
+	instance.owner = self

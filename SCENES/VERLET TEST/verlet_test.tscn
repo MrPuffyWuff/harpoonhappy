@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://tr6ccq32eoa5"]
+
+[ext_resource type="Script" uid="uid://bss2pebylg0sl" path="res://SCENES/VERLET TEST/verlet_test.gd" id="1_0rwgs"]
+
+[node name="VerletTest" type="Node2D"]
+script = ExtResource("1_0rwgs")

@@ -32,9 +32,9 @@ func _ready() -> void:
 			var joint := Generic6DOFJoint3D.new()
 			joint.position = path_follow.position
 			joint.transform.basis = rotation
-			#joint.set_flag_x(Generic6DOFJoint3D.FLAG_ENABLE_ANGULAR_LIMIT, true)
-			#joint.set_flag_y(Generic6DOFJoint3D.FLAG_ENABLE_ANGULAR_LIMIT, true)
-			#joint.set_flag_z(Generic6DOFJoint3D.FLAG_ENABLE_ANGULAR_LIMIT, true)
+			#joint.set_param_x(Generic6DOFJoint3D.PARAM_ANGULAR_DAMPING, 0.7)
+			#joint.set_param_y(Generic6DOFJoint3D.PARAM_ANGULAR_DAMPING, 0.7)
+			#joint.set_param_z(Generic6DOFJoint3D.PARAM_ANGULAR_DAMPING, 0.7)
 			#joint.add_child(make_mesh())
 			points.append(joint)
 		else:

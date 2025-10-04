@@ -7,6 +7,8 @@ extends RigidBody3D
 var player : Player
 const ROPE = preload("res://SCENES/PLAYER/WEAPON/ROPE/rope.tscn")
 
+var made_rope : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	linear_velocity = input_dir * SPEED
@@ -17,15 +19,18 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body: Node) -> void:
-	if body.get_parent().name == "Objects":
+	if body.get_parent().name == "Objects" and not made_rope:
 		#"Glue" them together
 		var joint : Generic6DOFJoint3D = Generic6DOFJoint3D.new()
 		joint.node_a = self.get_path()
 		joint.node_b = body.get_path()
 		add_child(joint)
 		make_rope()
+	elif not made_rope:
+		suicide()
 
 func make_rope():
+	made_rope = true
 	var rope : Rope = ROPE.instantiate()
 	rope.start = player.rope_point.position
 	var to_obj_vector : Vector3 = self.global_position - player.global_position
@@ -35,3 +40,8 @@ func make_rope():
 	rope.end_anchor = self
 	#Terrain.get_child(5).add_child(rope)
 	player.rope_point.add_child(rope)
+
+func suicide():
+	if made_rope:
+		player.remove_rope()
+	queue_free()

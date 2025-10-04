@@ -28,9 +28,14 @@ func _physics_process(delta: float) -> void:
 	#Self explanitory
 	handle_xyz_input(delta)
 	if Engine.time_scale == 0.1: handle_weapon_ray()
+	else: handle_detatch_rope()
 	handle_time_state()
 	move_and_slide()
 	handle_body_state()
+
+func handle_detatch_rope():
+	if Input.is_action_just_pressed("player_shoot_weapon"):
+		remove_rope()
 
 func handle_time_state():
 	#Toggle Engine.time_scale between 1 and 0.1. Scales delta values GLOBALLY
@@ -134,3 +139,14 @@ func reset():
 	position = Vector3(0,11,0)#ylvl10 is the height of the helipad
 	rotation = Vector3.ZERO
 	velocity = Vector3.ZERO
+
+func remove_rope():
+	for child in rope_point.get_children():
+		child.queue_free()
+
+#Not functional currently...
+func disconnect_rope():
+	var rope : Node3D = rope_point.get_child(0)
+	var first_joint : Joint3D = (rope.get_child(1))
+	first_joint.node_a = first_joint.node_b
+	rope.reparent($"../Terrain/Objects")
