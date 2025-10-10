@@ -2,10 +2,11 @@ extends Node3D
 
 class_name Rope
 
+const RED_CIRCLE = preload("res://SCENES/MAP/OBJECTS/red_circle.tscn")
 @onready var path_3d := $Path3D
 @onready var path_follow := $Path3D/PathFollow3D
 
-var segments : int = 20
+var segments : int = 0
 var start : Vector3 = Vector3(0,0,0)
 var end : Vector3 = Vector3(0,-10,0)
 var start_anchor : Node3D
@@ -22,6 +23,7 @@ func _ready() -> void:
 	rope_curve.add_point(end)
 	path_3d.curve = rope_curve
 	legnth = (start - end).length()
+	segments = int(legnth/2)
 	var rotation = Basis.looking_at(end - start)
 	#Generate Joints and Rigid bodies
 	var points = [start_anchor]
@@ -29,13 +31,16 @@ func _ready() -> void:
 		var percent = i/float(2*segments)
 		path_follow.progress_ratio = percent
 		if i % 2 == 0:
-			var joint := Generic6DOFJoint3D.new()
+			var joint := PinJoint3D.new()
 			joint.position = path_follow.position
 			joint.transform.basis = rotation
 			#joint.set_param_x(Generic6DOFJoint3D.PARAM_ANGULAR_DAMPING, 0.7)
 			#joint.set_param_y(Generic6DOFJoint3D.PARAM_ANGULAR_DAMPING, 0.7)
 			#joint.set_param_z(Generic6DOFJoint3D.PARAM_ANGULAR_DAMPING, 0.7)
+			#joint.set_param(PinJoint3D.PARAM_BIAS, 0.7)
 			#joint.add_child(make_mesh())
+			var dot = RED_CIRCLE.instantiate()
+			joint.add_child(dot)
 			points.append(joint)
 		else:
 			var body := make_rigid_body(rotation)
@@ -55,17 +60,17 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func make_rigid_body(rotation : Basis) -> RigidBody3D:
+func make_rigid_body(rotation_point : Basis) -> RigidBody3D:
 	var body := RigidBody3D.new()
 	body.position = path_follow.position
-	body.transform.basis = rotation.rotated(Vector3(0,0,1),PI/2)
+	body.transform.basis = rotation_point.rotated(Vector3(1,0,0),PI/2)
 	#body.axis_lock_angular_x = false
 	#body.axis_lock_angular_y = false
 	#body.axis_lock_angular_z = true
 	body.mass = 10
 	#body.angular_damp = 1
 	#TEMP - Mesh for debugging sake
-	var mesh_instance : MeshInstance3D = make_mesh(legnth/segments/2)
+	var mesh_instance : MeshInstance3D = make_mesh(legnth/segments)
 	body.add_child(mesh_instance)
 	#The Collision Hit Box
 	var colliding_box := CollisionShape3D.new()
